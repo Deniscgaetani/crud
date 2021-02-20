@@ -1,0 +1,13 @@
+// Parametros CPF, Nome, Email, Telefone
+POST  http://0.0.0.0:5000/crud-78cf5/us-central1/appCriarCliente
+Accept: application/json
+Content-Type: application/json
+
+{
+  "data": {
+    "cpf": "teste1",
+    "nome": "teste",
+    "email": "teste@gmail.com",
+    "telefone": "123213241"
+  }
+}
