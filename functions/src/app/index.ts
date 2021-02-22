@@ -13,7 +13,6 @@ const crud = new Crud(firestore);
  * Cria um cliente na coleção de clientes.
  */
 export const appCriarCliente = functions.region('us-central1').https.onCall((data) => {
-  console.log('data:::', JSON.stringify(data));
   const observable = of({
     payload: data
   }).pipe(

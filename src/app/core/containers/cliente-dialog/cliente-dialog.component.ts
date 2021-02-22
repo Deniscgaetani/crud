@@ -3,7 +3,7 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {FormBuilder} from '@angular/forms';
 import {select, Store} from '@ngrx/store';
 import {CrudState} from '@core/store/reducers/crud.reducer';
-import {CreateCliente} from '@core/store/actions/crud.action';
+import {ClienteDialogId, CreateCliente} from '@core/store/actions/crud.action';
 import {Observable} from 'rxjs';
 import {getLoading} from '@core/store/selectors/crud.selectors';
 
@@ -13,6 +13,7 @@ import {getLoading} from '@core/store/selectors/crud.selectors';
   styleUrls: ['./cliente-dialog.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
+
 export class ClienteDialogComponent implements OnInit {
   /**
    * Observação do loading.
@@ -35,12 +36,12 @@ export class ClienteDialogComponent implements OnInit {
   }
 
   onSubmit() {
-    console.warn(this.profileForm.value);
-    console.warn('datas', this.data.data);
     this.store.dispatch(CreateCliente({payload: this.profileForm.value}));
   }
 
   ngOnInit(): void {
     this.loading$ = this.store.pipe(select(getLoading));
+    this.store.dispatch(ClienteDialogId({payload: this.dialogRef.id}));
   }
+
 }

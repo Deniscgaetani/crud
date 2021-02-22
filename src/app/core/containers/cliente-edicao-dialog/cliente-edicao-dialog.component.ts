@@ -3,7 +3,7 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {select, Store} from '@ngrx/store';
 import {CrudState} from '@core/store/reducers/crud.reducer';
 import {FormBuilder} from '@angular/forms';
-import {DeleteCliente, UpdateCliente} from '@core/store/actions/crud.action';
+import {ClienteDialogId, UpdateCliente} from '@core/store/actions/crud.action';
 import {Observable} from 'rxjs';
 import {getLoading} from '@core/store/selectors/crud.selectors';
 
@@ -31,6 +31,7 @@ export class ClienteEdicaoDialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.loading$ = this.store.pipe(select(getLoading));
+    this.store.dispatch(ClienteDialogId({payload: this.dialogRef.id}));
   }
 
   close() {

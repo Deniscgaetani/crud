@@ -32,3 +32,10 @@ export const getLoading = createSelector(
   getCrudState,
   state => state.loading
 );
+/**
+ * Recupera o id do modal aberto.
+ */
+export const getModalId = createSelector(
+  getCrudState,
+  state => state.dialogId
+);

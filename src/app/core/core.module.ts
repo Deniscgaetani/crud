@@ -12,20 +12,22 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import {SharedModule} from '@shared/shared.module';
 import {ClienteDialogComponent} from '@core/containers/cliente-dialog/cliente-dialog.component';
 import { ClienteEdicaoDialogComponent } from './containers/cliente-edicao-dialog/cliente-edicao-dialog.component';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 
 @NgModule({
   declarations: [ClientesComponent, ClientesTabelaComponent, ClienteDialogComponent, ClienteEdicaoDialogComponent],
-  imports: [
-    CommonModule,
-    CoreRoutingModule,
-    StoreModule.forFeature('core', globalReducers),
-    EffectsModule.forFeature([
-      CoreEffects,
-    ]),
-    SharedModule,
-    FlexLayoutModule,
-  ],
+    imports: [
+        CommonModule,
+        CoreRoutingModule,
+        StoreModule.forFeature('core', globalReducers),
+        EffectsModule.forFeature([
+            CoreEffects,
+        ]),
+        SharedModule,
+        FlexLayoutModule,
+        MatTooltipModule,
+    ],
   entryComponents: [ClienteDialogComponent, ClienteEdicaoDialogComponent],
 })
 export class CoreModule {

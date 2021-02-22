@@ -1,7 +1,7 @@
-<div class="example-container mat-elevation-z8">
+<div class="mat-elevation-z8">
   <table mat-table [dataSource]="datasource">
     <!-- Cpf Column -->
-    <ng-container *ngFor="let coluna of colunasMostradas" matColumnDef="{{coluna}}" sticky>
+    <ng-container *ngFor="let coluna of colunasMostradas" matColumnDef="{{coluna}}">
       <th mat-header-cell *matHeaderCellDef> {{coluna}} </th>
       <div *ngIf="!coluna.includes('menu')">
         <td mat-cell *matCellDef="let element" (click)="selecionar(element)" (dblclick)="delete(element)">

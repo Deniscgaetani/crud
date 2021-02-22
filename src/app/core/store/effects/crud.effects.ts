@@ -1,33 +1,36 @@
 import {Injectable} from '@angular/core';
 import {Actions, createEffect, ofType} from '@ngrx/effects';
 import {ClienteModel} from '@core/models/cliente.model';
-import {catchError, map, pluck, switchMap} from 'rxjs/operators';
+import {catchError, map, pluck, switchMap, tap, withLatestFrom} from 'rxjs/operators';
 import {of} from 'rxjs';
 import {
-  ClienteDialog, ClienteDialogEdicao, ClienteSelecionado,
+  ClienteDialog,
+  ClienteDialogClose,
+  ClienteSelecionado,
   CreateCliente,
   CreateClienteError,
-  CreateClienteSuccess, DeleteCliente, DeleteClienteError, DeleteClienteSuccess,
+  CreateClienteSuccess,
+  DeleteCliente,
+  DeleteClienteError,
+  DeleteClienteSuccess,
   LoadClientes,
-  LoadClientesError, UpdateCliente, UpdateClienteError, UpdateClienteSuccess
+  LoadClientesError,
+  UpdateCliente,
+  UpdateClienteError,
+  UpdateClienteSuccess
 } from '@core/store/actions/crud.action';
-import {Store} from '@ngrx/store';
+import {select, Store} from '@ngrx/store';
 import {CrudState} from '@core/store/reducers/crud.reducer';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {MatDialog} from '@angular/material/dialog';
 import {ClienteDialogComponent} from '@core/containers/cliente-dialog/cliente-dialog.component';
 import {AngularFireFunctions} from '@angular/fire/functions';
 import {ClienteEdicaoDialogComponent} from '@core/containers/cliente-edicao-dialog/cliente-edicao-dialog.component';
+import {getModalId} from '@core/store/selectors/crud.selectors';
 
 
 @Injectable()
 export class CoreEffects {
-  // criarCliente = (cliente: ClienteModel) => this.fns.httpsCallable('appCriarCliente')({cliente});
-
-  // selecionarFormaPagamento = (id: string) => this.fns.httpsCallable('mpgSelecionarFormaPagamento')({id});
-  //
-  // deletarFormaPagamento = (id: string) => this.fns.httpsCallable('mpgDeletarFormaPagamento')({id});
-  //
 
   loadClientes$ = createEffect(() => this.db.collection<ClienteModel>(`clientes/`).valueChanges().pipe(
     map((cliente) => LoadClientes(
@@ -48,6 +51,13 @@ export class CoreEffects {
       }).afterClosed()),
     ), {dispatch: false}
   );
+
+  conteudoDialogClose$ = createEffect(() => this.actions$.pipe(
+    ofType(CreateClienteSuccess, UpdateClienteSuccess),
+    withLatestFrom(this.store.pipe(select(getModalId))),
+    tap((dialogId) => this.dialog.getDialogById(dialogId[1]).close()),
+    map((dialog) => ClienteDialogClose({payload: dialog[1]}))));
+
   conteudoDialogEdicao$ = createEffect(() =>
     this.actions$.pipe(
       ofType(ClienteSelecionado),
@@ -91,6 +101,7 @@ export class CoreEffects {
       )
     )
   ));
+
   constructor(private actions$: Actions,
               private db: AngularFirestore,
               private fns: AngularFireFunctions,

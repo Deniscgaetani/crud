@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Store} from '@ngrx/store';
 import {CrudState} from '@core/store/reducers/crud.reducer';
-import {ClienteDialog, ClienteDialogEdicao, ClienteSelecionado, DeleteCliente} from '@core/store/actions/crud.action';
+import {ClienteSelecionado, DeleteCliente} from '@core/store/actions/crud.action';
 
 @Component({
   selector: 'app-tabela',
@@ -22,12 +22,12 @@ export class TabelaComponent implements OnInit {
     this.colunasMostradas.push('menu');
 
   }
+
   selecionar(selecao) {
-    console.warn('aki>', JSON.stringify(selecao));
     this.store.dispatch(ClienteSelecionado({payload: selecao}));
   }
+
   delete(selecao) {
-    console.warn('delete>', JSON.stringify(selecao));
     this.store.dispatch(DeleteCliente({payload: selecao}));
   }
 }
