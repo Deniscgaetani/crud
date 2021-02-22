@@ -10,6 +10,7 @@
     </button>
   </mat-menu>
 </mat-toolbar>
+<app-loading [loading]="loading$|async"></app-loading>
 <div fxLayout="column" fxLayoutAlign="space-between stretch">
   <div>
     <app-tabela [datasource]="clientes$| async" [colunasMostradas]="['cpf', 'nome', 'telefone', 'email']"></app-tabela>

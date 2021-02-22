@@ -1,10 +1,11 @@
 import {ChangeDetectionStrategy, Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {FormBuilder} from '@angular/forms';
-import {Store} from '@ngrx/store';
+import {select, Store} from '@ngrx/store';
 import {CrudState} from '@core/store/reducers/crud.reducer';
 import {CreateCliente} from '@core/store/actions/crud.action';
-import {ofType} from '@ngrx/effects';
+import {Observable} from 'rxjs';
+import {getLoading} from '@core/store/selectors/crud.selectors';
 
 @Component({
   selector: 'app-cliente-dialog',
@@ -12,7 +13,12 @@ import {ofType} from '@ngrx/effects';
   styleUrls: ['./cliente-dialog.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ClienteDialogComponent implements OnInit{
+export class ClienteDialogComponent implements OnInit {
+  /**
+   * Observação do loading.
+   */
+  public loading$: Observable<boolean>;
+
   profileForm = this.fb.group({
     cpf: [''],
     nome: [''],
@@ -35,5 +41,6 @@ export class ClienteDialogComponent implements OnInit{
   }
 
   ngOnInit(): void {
+    this.loading$ = this.store.pipe(select(getLoading));
   }
 }

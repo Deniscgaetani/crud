@@ -1,4 +1,6 @@
 <mat-toolbar>Criação</mat-toolbar>
+<app-loading [loading]="loading$| async"></app-loading>
+
 <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" fxLayout="column" fxLayoutAlign="space-between stretch">
   <mat-form-field appearance="legacy">
     <mat-label>Cpf</mat-label>
@@ -21,7 +23,8 @@
     <mat-hint>Email</mat-hint>
   </mat-form-field>
   <div fxLayout="row" fxLayoutAlign="center center" class="example-button-row">
-  <button mat-raised-button color="primary" type="submit" [disabled]="!profileForm.valid">Cadastrar Cliente</button>
-  <button mat-raised-button color="accent" (click)="close()">Cancelar</button>
+    <button class="botao" mat-raised-button color="primary" type="submit" [disabled]="!profileForm.valid">Cadastrar Cliente</button>
   </div>
 </form>
+
+<button class="botao" mat-raised-button color="accent" (click)="close()">Cancelar</button>

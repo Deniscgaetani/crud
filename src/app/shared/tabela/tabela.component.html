@@ -10,13 +10,13 @@
       </div>
       <div *ngIf="coluna.includes('menu')">
         <td mat-cell *matCellDef="let element">
-          <button mat-icon-button aria-label="menu" (click)="delete(element)">
+          <button mat-icon-button aria-label="menu" (click)="delete(element)" matTooltip="Excluir Cliente"
+          >
             <mat-icon>delete</mat-icon>
           </button>
         </td>
       </div>
     </ng-container>
-
     <tr mat-header-row *matHeaderRowDef="colunasMostradas"></tr>
     <tr mat-row *matRowDef="let row; columns: colunasMostradas;"></tr>
   </table>

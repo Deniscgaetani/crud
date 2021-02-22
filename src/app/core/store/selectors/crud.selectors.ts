@@ -24,3 +24,11 @@ export const getCliente = createSelector(
   getCrudState,
   state => state.clienteSelecionado
 );
+
+/**
+ * Recupera o Loading.
+ */
+export const getLoading = createSelector(
+  getCrudState,
+  state => state.loading
+);

@@ -1,4 +1,5 @@
-<mat-toolbar>Edição</mat-toolbar>
+<mat-toolbar>Edição do cliente de cpf: {{data.cpf}}</mat-toolbar>
+<app-loading [loading]="loading$|async"></app-loading>
 <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" fxLayout="column" fxLayoutAlign="space-between stretch">
   <mat-form-field appearance="legacy">
     <mat-label>Nome</mat-label>
@@ -16,7 +17,7 @@
     <mat-hint>Email</mat-hint>
   </mat-form-field>
   <div fxLayout="row" fxLayoutAlign="center center" class="example-button-row">
-    <button mat-raised-button color="primary" type="submit" [disabled]="!profileForm.valid">Editar Cliente</button>
-    <button mat-raised-button color="accent" (click)="close()">Cancelar</button>
+    <button mat-raised-button color="primary" class='botao' type="submit" [disabled]="!profileForm.valid">Editar Cliente</button>
   </div>
 </form>
+<button mat-raised-button color="accent" class='botao' (click)="close()">Cancelar</button>
