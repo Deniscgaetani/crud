@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "crud-78cf5"
+  },
+  "targets": {
+    "crud-78cf5": {
+      "hosting": {
+        "ProjetoCrud": [
+          "crud-78cf5"
+        ]
+      }
+    }
   }
 }

@@ -1,0 +1,17 @@
+<mat-toolbar color="primary" fxLayout="row" fxLayoutAlign="space-between center">
+  Projeto Crud
+  <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="menu">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="abrirDialog()">
+      <mat-icon>add_task</mat-icon>
+      <span>Cadastrar Cliente</span>
+    </button>
+  </mat-menu>
+</mat-toolbar>
+<div fxLayout="column" fxLayoutAlign="space-between stretch">
+  <div>
+    <app-tabela [datasource]="clientes$| async" [colunasMostradas]="['cpf', 'nome', 'telefone', 'email']"></app-tabela>
+  </div>
+</div>

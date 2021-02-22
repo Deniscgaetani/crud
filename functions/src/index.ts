@@ -20,6 +20,8 @@ admin.firestore().settings({});
 
 // export Application Functions
 export {
-  appCriarCliente
+  appCriarCliente,
+  appAtualizarCliente,
+  appRemoverCliente
 } from './app';
-// firebase deploy --only functions:appCriarCliente,functions:appAtualizarAcesso,functions:appAtualizar,functions:appEnviarEvento,functions:appSessionStart,functions:appAtualizarInstitucional,functions:appCriarConfiguracaoDisponibilidade
+// firebase deploy --only functions:appCriarCliente,functions:appAtualizarCliente,functions:appRemoverCliente
