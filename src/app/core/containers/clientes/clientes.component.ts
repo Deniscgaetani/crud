@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
 import {ClienteModel} from '@core/models/cliente.model';
-import {CoreState} from '@core/store/reducers/global.reducers';
-import {select, Store} from '@ngrx/store';
+import {Action, select, Store} from '@ngrx/store';
 import {CrudState} from '@core/store/reducers/crud.reducer';
 import {getClientes, getLoading} from '@core/store/selectors/crud.selectors';
 import {ClienteDialog} from '@core/store/actions/crud.action';
@@ -23,7 +22,9 @@ export class ClientesComponent implements OnInit {
   public loading$: Observable<boolean>;
   displayedColumns =
     ['cpf', 'nome', 'telefone', 'email', 'menu'];
-  constructor(private store: Store<CrudState>) { }
+
+  constructor(private store: Store<CrudState>) {
+  }
 
   ngOnInit(): void {
     this.clientes$ = this.store.pipe(select(getClientes));
@@ -34,4 +35,7 @@ export class ClientesComponent implements OnInit {
     this.store.dispatch(ClienteDialog());
   }
 
+  dispatch(action: Action) {
+    this.store.dispatch(action);
+  }
 }

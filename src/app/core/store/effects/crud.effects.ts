@@ -23,9 +23,8 @@ import {select, Store} from '@ngrx/store';
 import {CrudState} from '@core/store/reducers/crud.reducer';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {MatDialog} from '@angular/material/dialog';
-import {ClienteDialogComponent} from '@core/containers/cliente-dialog/cliente-dialog.component';
 import {AngularFireFunctions} from '@angular/fire/functions';
-import {ClienteEdicaoDialogComponent} from '@core/containers/cliente-edicao-dialog/cliente-edicao-dialog.component';
+import {ClienteDialogComponent} from '@core/containers/cliente-dialog/cliente-dialog.component';
 import {getModalId} from '@core/store/selectors/crud.selectors';
 
 
@@ -38,12 +37,12 @@ export class CoreEffects {
     catchError((err => of(LoadClientesError(err))))
     )
   );
-
-  conteudoDialog$ = createEffect(() =>
+  conteudoDialogEdicao$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(ClienteDialog),
-      switchMap((conteudo) => this.dialog.open(ClienteDialogComponent, {
-        data: {conteudo},
+      ofType(ClienteDialog, ClienteSelecionado),
+      pluck('payload'),
+      switchMap((data) => this.dialog.open(ClienteDialogComponent, {
+        data: data,
         width: '100%',
         height: '100%',
         maxWidth: '100%',
@@ -58,19 +57,6 @@ export class CoreEffects {
     tap((dialogId) => this.dialog.getDialogById(dialogId[1]).close()),
     map((dialog) => ClienteDialogClose({payload: dialog[1]}))));
 
-  conteudoDialogEdicao$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(ClienteSelecionado),
-      pluck('payload'),
-      switchMap((data) => this.dialog.open(ClienteEdicaoDialogComponent, {
-        data: data,
-        width: '100%',
-        height: '100%',
-        maxWidth: '100%',
-        maxHeight: '100%',
-      }).afterClosed()),
-    ), {dispatch: false}
-  );
   createCliente$ = createEffect(() => this.actions$.pipe(
     ofType(CreateCliente),
     pluck('payload'),

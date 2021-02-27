@@ -4,6 +4,10 @@
 
 export const environment = {
   production: false,
+  functions: {
+    emulator: false,
+    host: 'http://localhost:5001'
+  },
   // For Firebase JS SDK v7.20.0 and later, measurementId is optional
   firebase: {
     apiKey: 'AIzaSyDW0-84jy9wDl91Kb-vygPz9qex6HXMCFE',

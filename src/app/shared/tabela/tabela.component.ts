@@ -1,6 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {Store} from '@ngrx/store';
-import {CrudState} from '@core/store/reducers/crud.reducer';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Action} from '@ngrx/store';
 import {ClienteSelecionado, DeleteCliente} from '@core/store/actions/crud.action';
 
 @Component({
@@ -13,8 +12,10 @@ export class TabelaComponent implements OnInit {
   datasource: any[];
   @Input()
   colunasMostradas: string[];
+  @Output()
+  actionEmitter = new EventEmitter<Action>();
 
-  constructor(private store: Store<CrudState>) {
+  constructor() {
   }
 
 
@@ -24,10 +25,10 @@ export class TabelaComponent implements OnInit {
   }
 
   selecionar(selecao) {
-    this.store.dispatch(ClienteSelecionado({payload: selecao}));
+    this.actionEmitter.emit(ClienteSelecionado({payload: selecao}));
   }
 
   delete(selecao) {
-    this.store.dispatch(DeleteCliente({payload: selecao}));
+    this.actionEmitter.emit(DeleteCliente({payload: selecao}));
   }
 }

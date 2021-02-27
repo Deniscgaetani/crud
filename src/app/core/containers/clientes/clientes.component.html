@@ -7,6 +7,6 @@
 <app-loading [loading]="loading$|async"></app-loading>
 <div fxLayout="column" fxLayoutAlign="space-between stretch">
   <div>
-    <app-tabela [datasource]="clientes$| async" [colunasMostradas]="['cpf', 'nome', 'telefone', 'email']"></app-tabela>
+    <app-tabela [datasource]="clientes$| async" [colunasMostradas]="['cpf', 'nome', 'telefone', 'email']" (actionEmitter)="dispatch($event)"></app-tabela>
   </div>
 </div>

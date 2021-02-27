@@ -1,30 +1,50 @@
-<mat-toolbar>Criação</mat-toolbar>
-<app-loading [loading]="loading$| async"></app-loading>
-
+<mat-toolbar *ngIf="this.data">Edição do cliente de cpf: {{data.cpf}}</mat-toolbar>
+<mat-toolbar *ngIf="!this.data">Cadastro de Cliente</mat-toolbar>
+<app-loading [loading]="loading$|async"></app-loading>
 <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" fxLayout="column" fxLayoutAlign="space-between stretch">
-  <mat-form-field appearance="legacy">
+  <mat-form-field appearance="legacy" *ngIf="!this.data">
     <mat-label>Cpf</mat-label>
-    <input matInput placeholder="Digite seu cpf aqui" type="text" formControlName="cpf" required>
+    <label>
+      <input matInput placeholder="Digite seu cpf aqui" type="text" formControlName="cpf" required
+             inputmode="numeric" maxlength="11" pattern="[0-9]*">
+      <mat-error *ngIf="profileForm.get('cpf').hasError('required')">
+        Somente números no cpf.
+      </mat-error>
+    </label>
     <mat-hint>CPF</mat-hint>
   </mat-form-field>
   <mat-form-field appearance="legacy">
     <mat-label>Nome</mat-label>
-    <input matInput placeholder="Digite seu nome aqui" type="text" formControlName="nome" required>
+    <label>
+      <input matInput placeholder="Digite seu nome aqui" type="text" formControlName="nome" required maxlength="11">
+      <mat-error *ngIf="profileForm.get('nome').hasError('required')">
+        Máximo de 16 caracteres, e não e aceito caracteres especiais.
+      </mat-error>
+    </label>
     <mat-hint>Nome</mat-hint>
   </mat-form-field>
   <mat-form-field appearance="legacy">
     <mat-label>Telefone</mat-label>
-    <input matInput placeholder="Digite seu telefone aqui" type="text" formControlName="telefone" required>
+    <label>
+      <input matInput placeholder="DDD + Telefone sem traços " formControlName="telefone" required type="tel" maxlength="11">
+      <mat-error *ngIf="profileForm.get('telefone').hasError('required')">
+        somente números.
+      </mat-error>
+    </label>
     <mat-hint>Telefone</mat-hint>
   </mat-form-field>
   <mat-form-field appearance="legacy">
     <mat-label>Email</mat-label>
-    <input matInput placeholder="Digite seu email aqui" type="text" formControlName="email" required>
+    <label>
+      <input matInput placeholder="Digite seu email aqui" type="text" formControlName="email" required>
+      <mat-error *ngIf="profileForm.get('email').hasError('required')">
+        necéssario o @ em seu email.
+      </mat-error>
+    </label>
     <mat-hint>Email</mat-hint>
   </mat-form-field>
   <div fxLayout="row" fxLayoutAlign="center center" class="example-button-row">
-    <button class="botao" mat-raised-button color="primary" type="submit" [disabled]="!profileForm.valid">Cadastrar Cliente</button>
+    <button mat-raised-button color="primary" class='botao' type="submit" [disabled]="!profileForm.valid">Editar Cliente</button>
   </div>
 </form>
-
-<button class="botao" mat-raised-button color="accent" (click)="close()">Cancelar</button>
+<button mat-raised-button color="accent" class='botao' (click)="close()">Cancelar</button>
