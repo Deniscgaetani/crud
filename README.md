@@ -1,4 +1,7 @@
 ![alt text](https://cr-ss-service.azurewebsites.net/api/ScreenShot?widget=summary&username=deniscgaetani&badges=2&show-avatar=false&style=--header-bg-color:%23000;--border-radius:10px")
+
+[![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
+
 # ProjetoCrud
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.1.
