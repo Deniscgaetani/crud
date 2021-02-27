@@ -1,12 +1,9 @@
 <mat-toolbar color="primary" fxLayout="row" fxLayoutAlign="space-between center">
   Projeto Crud
-   <button mat-icon-button  matTooltip="Cadastrar Cliente" (click)="abrirDialog()">
-      <mat-icon >add_task</mat-icon>
-    </button>
+  <button mat-icon-button matTooltip="Cadastrar Cliente" (click)="abrirDialog()">
+    <mat-icon>add_task</mat-icon>
+  </button>
 </mat-toolbar>
 <app-loading [loading]="loading$|async"></app-loading>
-<div fxLayout="column" fxLayoutAlign="space-between stretch">
-  <div>
-    <app-tabela [datasource]="clientes$| async" [colunasMostradas]="['cpf', 'nome', 'telefone', 'email']" (actionEmitter)="dispatch($event)"></app-tabela>
-  </div>
-</div>
+<app-tabela [datasource]="clientes$| async" [colunasMostradas]="['cpf', 'nome', 'telefone', 'email']"
+            (actionEmitter)="dispatch($event)"></app-tabela>

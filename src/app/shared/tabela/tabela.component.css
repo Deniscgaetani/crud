@@ -1,4 +1,9 @@
 table {
   width: 100%;
 }
-
+.example-container {
+  overflow: auto;
+}
+th.mat-header-cell, td.mat-cell, td.mat-footer-cell {
+padding-left: 10px;
+}

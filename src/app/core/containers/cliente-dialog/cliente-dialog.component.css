@@ -4,3 +4,6 @@
 .botao {
   width: 100%;
 }
+mat-toolbar.title {
+  font-size: 4vw;
+}

@@ -1,4 +1,4 @@
-<mat-toolbar *ngIf="this.data">Edição do cliente de cpf: {{data.cpf}}</mat-toolbar>
+<mat-toolbar *ngIf="this.data" class="title">Edição do cliente de cpf: {{data.cpf}}</mat-toolbar>
 <mat-toolbar *ngIf="!this.data">Cadastro de Cliente</mat-toolbar>
 <app-loading [loading]="loading$|async"></app-loading>
 <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" fxLayout="column" fxLayoutAlign="space-between stretch">
