@@ -1,6 +1,10 @@
 ![alt text](https://cr-ss-service.azurewebsites.net/api/ScreenShot?widget=summary&username=deniscgaetani&badges=2&show-avatar=false&style=--header-bg-color:%23000;--border-radius:10px")
+## About me
+[![Github Badge](https://img.shields.io/badge/-Github-000?style=flat-square&logo=Github&logoColor=white&link=link_do_seu_perfil_no_github)](https://github.com/Deniscgaetani)
+[![Linkedin Badge](https://img.shields.io/badge/-LinkedIn-blue?style=flat-square&logo=Linkedin&logoColor=white&link=link_do_seu_perfil_no_linkedin)](https://www.linkedin.com/in/denis-gaetani-030990b6/)
 
-[![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
+- Thanks for visiting, this project frontend was made using Angular 11+, and backend with Node.Js + firebase cloud functions
+  , I use as well RxJs and NgRx.
 
 # ProjetoCrud
 
